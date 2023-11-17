@@ -14,6 +14,7 @@ import jakarta.validation.Valid;
 import kata.line.message.dao.MessageEventRepository;
 import kata.line.message.dao.entity.MessageEventEntity;
 import kata.line.message.mapper.MessageEventMapper;
+import kata.line.message.model.MessageItemDto;
 import kata.line.message.model.MessageReplyRequestDto;
 import kata.line.message.model.MessageReplyResultDto;
 import org.slf4j.Logger;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
@@ -91,4 +93,14 @@ public class MessageController {
         return ResponseEntity.status(HttpStatus.OK).body(messageReplyResultDto);
     }
 
+    @GetMapping("/messages")
+    public List<MessageItemDto> getMessages(@RequestParam Optional<String> userId) {
+        List<MessageEventEntity> entityList;
+        if (userId.isEmpty()) {
+            entityList = messageEventRepository.findAll();
+        } else {
+            entityList = messageEventRepository.findByUser(userId.get());
+        }
+        return MessageEventMapper.toMessageItemDtoList(entityList);
+    }
 }
