@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: LineWebhookEvent
+      username: {your_user}
+      password: {your_password}
+  profiles:
+    active: local
+
+line.bot:
+  channel-token: 'Your token'
+  channel-secret: 'Your secret'
+  handler.path: /callback
