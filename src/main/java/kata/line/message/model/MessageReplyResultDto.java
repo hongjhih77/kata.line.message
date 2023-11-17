@@ -1,7 +1,5 @@
 package kata.line.message.model;
 
-import java.util.List;
-
 public class MessageReplyResultDto {
     String sentMessageId;
     String errorMsg;
@@ -33,5 +31,21 @@ public class MessageReplyResultDto {
             messageReplyResultDto.errorMsg = this.errorMsg;
             return messageReplyResultDto;
         }
+    }
+
+    public String getSentMessageId() {
+        return sentMessageId;
+    }
+
+    public void setSentMessageId(String sentMessageId) {
+        this.sentMessageId = sentMessageId;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 }
